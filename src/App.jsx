@@ -21,12 +21,20 @@ function App() {
     fetchTodos();
   };
 
-  const toggleTodo = async (id, completed) => {
-    await axios.put(`http://localhost:3000/api/todos/${id}`, {
-      completed: !completed,
-    });
-    fetchTodos();
-  };
+  const updateTodoStatus = async (todo) => {
+  const nextStatus =
+    todo.status === 'todo'
+      ? 'doing'
+      : todo.status === 'doing'
+      ? 'done'
+      : 'todo';
+
+  await axios.put(`http://localhost:5000/api/todos/${todo.id}`, {
+    status: nextStatus,
+  });
+
+  fetchTodos();
+};
 
   const deleteTodo = async (id) => {
     await axios.delete(`http://localhost:3000/api/todos/${id}`);
@@ -34,12 +42,12 @@ function App() {
   };
 
   return (
-    <div>
+    <div className='app-container'>
       <h1>ToDo List</h1>
       <TodoForm addTodo={addTodo} />
       <TodoList
         todos={todos}
-        toggleTodo={toggleTodo}
+        updateTodoStatus={updateTodoStatus}
         deleteTodo={deleteTodo}
       />
     </div>
