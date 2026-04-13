@@ -22,19 +22,19 @@ function App() {
   };
 
   const updateTodoStatus = async (todo) => {
-  const nextStatus =
-    todo.status === 'todo'
-      ? 'doing'
-      : todo.status === 'doing'
-      ? 'done'
-      : 'todo';
+    const nextStatus =
+      todo.status === 'todo'
+        ? 'doing'
+        : todo.status === 'doing'
+          ? 'done'
+          : 'todo';
 
-  await axios.put(`http://localhost:5000/api/todos/${todo.id}`, {
-    status: nextStatus,
-  });
+    await axios.put(`http://localhost:3000/api/todos/${todo.id}`, {
+      status: nextStatus,
+    });
 
-  fetchTodos();
-};
+    fetchTodos();
+  };
 
   const deleteTodo = async (id) => {
     await axios.delete(`http://localhost:3000/api/todos/${id}`);
