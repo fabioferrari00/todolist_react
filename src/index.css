@@ -117,6 +117,12 @@ button:hover {
   border-radius: 50%;
 }
 
+.edit-btn {
+  background: #ffb700;
+  color: white;
+  border-radius: 50%;
+}
+
 .delete-btn {
   background: #dc3545;
   color: white;

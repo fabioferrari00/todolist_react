@@ -14,6 +14,10 @@ export default function TodoList({ todos, updateTodoStatus, openDeleteModal }) {
             </span>
           </div>
           <div className="todo-actions">
+            <button className="edit-btn" onClick={() => updateTodoStatus(todo)}>
+              <i class="fa-solid fa-pen"></i>
+            </button>
+
             <button className="icon-btn" onClick={() => updateTodoStatus(todo)}>
               <i className="fa-solid fa-rotate"></i>
             </button>
