@@ -73,12 +73,13 @@ function App() {
             <h2>Conferma eliminazione</h2>
 
             <p>
-              Vuoi eliminare:
+              Sei sicuro di voler definitivamente eliminare:
               <strong> {selectedTodo?.title}</strong>?
             </p>
+            <strong>Dopo non potrai più risalire a questa precisa TASK</strong>
 
             <div className="modal-actions">
-              <button onClick={() => setShowModal(false)}>
+              <button className='icon-btn' onClick={() => setShowModal(false)}>
                 Annulla
               </button>
 

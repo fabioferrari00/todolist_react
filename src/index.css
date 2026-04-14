@@ -114,11 +114,13 @@ button:hover {
 .icon-btn {
   background: #111;
   color: white;
+  border-radius: 50%;
 }
 
 .delete-btn {
   background: #dc3545;
   color: white;
+  border-radius: 50%;
 }
 
 .modal-overlay {
