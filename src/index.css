@@ -95,7 +95,7 @@ button:hover {
 }
 
 .status-todo {
-  background: #fff3cd;
+  background: #ffc400;
 }
 
 .status-doing {
@@ -103,7 +103,7 @@ button:hover {
 }
 
 .status-done {
-  background: #d1e7dd;
+  background: #64ffb9;
 }
 
 .todo-actions {
