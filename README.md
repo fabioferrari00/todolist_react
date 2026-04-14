@@ -18,18 +18,13 @@ Frontend della ToDo List full stack sviluppato con **React + Vite**.
 - CSS custom
 - FontAwesome
 
-## ▶️ Avvio
-```bash
-npm install
-npm run dev
-
-🌐 API usate
+## 🌐 API usate
 GET /api/todos
 POST /api/todos
 PUT /api/todos/:id
 DELETE /api/todos/:id
 
-📂 Struttura
+## 📂 Struttura
 src/
 ├── components/
 │   ├── TodoForm.jsx
@@ -37,6 +32,11 @@ src/
 ├── App.jsx
 └── index.css
 
-🎯 Obiettivo
+##🎯 Obiettivo
 
 Allenare state management React, chiamate Axios, componentizzazione e UI moderna.
+
+## ▶️ Avvio
+```bash
+npm install
+npm run dev
