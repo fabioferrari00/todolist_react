@@ -1,4 +1,4 @@
-export default function TodoList({ todos, updateTodoStatus, deleteTodo }) {
+export default function TodoList({ todos, updateTodoStatus, openDeleteModal }) {
   return (
     <ul className="todo-list">
       {todos.map(todo => (
@@ -10,17 +10,17 @@ export default function TodoList({ todos, updateTodoStatus, deleteTodo }) {
               {todo.title}
             </span>
             <span className={`todo-status status-${todo.status}`}>
-              {todo.status}
+              {todo.status === 'todo' ? "TO DO" : todo.status}
             </span>
           </div>
           <div className="todo-actions">
-            <button className="icon-btn" onClick={() => updateTodoStatus(todo) }>
+            <button className="icon-btn" onClick={() => updateTodoStatus(todo)}>
               <i className="fa-solid fa-rotate"></i>
             </button>
 
             <button
               className="delete-btn"
-              onClick={() => deleteTodo(todo.id)}
+              onClick={() => openDeleteModal(todo)}
             >
               <i className="fa-solid fa-trash"></i>
             </button>

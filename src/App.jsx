@@ -7,6 +7,7 @@ import TodoList from './components/TodoList';
 function App() {
   const [todos, setTodos] = useState([]);
 
+
   const fetchTodos = async () => {
     const res = await axios.get('http://localhost:3000/api/todos');
     setTodos(res.data);
@@ -36,9 +37,25 @@ function App() {
     fetchTodos();
   };
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedTodo, setSelectedTodo] = useState(null);
+
+  const openDeleteModal = (todo) => {
+    setSelectedTodo(todo);
+    setShowModal(true);
+  };
   const deleteTodo = async (id) => {
     await axios.delete(`http://localhost:3000/api/todos/${id}`);
     fetchTodos();
+  };
+
+  const confirmDelete = async () => {
+    if (!selectedTodo) return;
+
+    await deleteTodo(selectedTodo.id);
+
+    setShowModal(false);
+    setSelectedTodo(null);
   };
 
   return (
@@ -48,8 +65,30 @@ function App() {
       <TodoList
         todos={todos}
         updateTodoStatus={updateTodoStatus}
-        deleteTodo={deleteTodo}
+        openDeleteModal={openDeleteModal}
       />
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h2>Conferma eliminazione</h2>
+
+            <p>
+              Vuoi eliminare:
+              <strong> {selectedTodo?.title}</strong>?
+            </p>
+
+            <div className="modal-actions">
+              <button onClick={() => setShowModal(false)}>
+                Annulla
+              </button>
+
+              <button className="delete-btn" onClick={confirmDelete}>
+                Elimina
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
