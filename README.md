@@ -24,15 +24,8 @@ POST /api/todos
 PUT /api/todos/:id
 DELETE /api/todos/:id
 
-## 📂 Struttura
-src/
-├── components/
-│   ├── TodoForm.jsx
-│   └── TodoList.jsx
-├── App.jsx
-└── index.css
 
-##🎯 Obiettivo
+## 🎯 Obiettivo
 
 Allenare state management React, chiamate Axios, componentizzazione e UI moderna.
 
@@ -40,3 +33,11 @@ Allenare state management React, chiamate Axios, componentizzazione e UI moderna
 ```bash
 npm install
 npm run dev
+
+📂 Struttura
+src/
+├── components/
+│   ├── TodoForm.jsx
+│   └── TodoList.jsx
+├── App.jsx
+└── index.css
