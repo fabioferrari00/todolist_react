@@ -37,11 +37,18 @@ function App() {
           ? 'done'
           : 'todo';
 
-    await axios.put(`http://localhost:3000/api/todos/${todo.id}`, {
-      status: nextStatus,
-    });
+    try {
+      await axios.patch(
+        `http://localhost:3000/api/todos/${todo.id}`,
+        {
+          status: nextStatus,
+        }
+      );
 
-    fetchTodos();
+      fetchTodos();
+    } catch (error) {
+      console.error('STATUS UPDATE ERROR:', error);
+    }
   };
 
 
