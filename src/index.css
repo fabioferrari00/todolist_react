@@ -123,6 +123,12 @@ button:hover {
   border-radius: 50%;
 }
 
+.save-btn {
+  background: #218500;
+  color: white;
+  border-radius: 50%;
+}
+
 .delete-btn {
   background: #dc3545;
   color: white;

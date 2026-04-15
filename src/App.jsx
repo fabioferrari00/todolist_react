@@ -7,6 +7,13 @@ import TodoList from './components/TodoList';
 function App() {
   const [todos, setTodos] = useState([]);
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedTodo, setSelectedTodo] = useState(null);
+
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingTodo, setEditingTodo] = useState(null);
+  const [editTitle, setEditTitle] = useState('');
+
 
   const fetchTodos = async () => {
     const res = await axios.get('http://localhost:3000/api/todos');
@@ -37,13 +44,18 @@ function App() {
     fetchTodos();
   };
 
-  const [showModal, setShowModal] = useState(false);
-  const [selectedTodo, setSelectedTodo] = useState(null);
 
   const openDeleteModal = (todo) => {
     setSelectedTodo(todo);
     setShowModal(true);
   };
+
+  const openEditModal = (todo) => {
+    setEditingTodo(todo);
+    setEditTitle(todo.title);
+    setShowEditModal(true);
+  };
+
   const deleteTodo = async (id) => {
     await axios.delete(`http://localhost:3000/api/todos/${id}`);
     fetchTodos();
@@ -58,6 +70,23 @@ function App() {
     setSelectedTodo(null);
   };
 
+  const saveEditTodo = async () => {
+    if (!editingTodo || !editTitle.trim()) return;
+
+    await axios.put(
+      `http://localhost:3000/api/todos/${editingTodo.id}`,
+      {
+        title: editTitle,
+        status: editingTodo.status,
+      }
+    );
+
+    setShowEditModal(false);
+    setEditingTodo(null);
+    setEditTitle('');
+    fetchTodos();
+  };
+
   return (
     <div className='app-container'>
       <h1>ToDo List</h1>
@@ -66,7 +95,9 @@ function App() {
         todos={todos}
         updateTodoStatus={updateTodoStatus}
         openDeleteModal={openDeleteModal}
+        openEditModal={openEditModal}
       />
+      {/*CONFIRM DELETE MODAL*/}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-box">
@@ -85,6 +116,31 @@ function App() {
 
               <button className="delete-btn" onClick={confirmDelete}>
                 Elimina
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/*EDIT MODAL*/}
+      {showEditModal && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h2>Modifica task</h2>
+
+            <input
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+              placeholder="Nuovo titolo"
+            />
+
+            <div className="modal-actions">
+              <button className='icon-btn' onClick={() => setShowEditModal(false)}>
+                Annulla
+              </button>
+
+              <button className="save-btn" onClick={saveEditTodo}>
+                Salva
               </button>
             </div>
           </div>
